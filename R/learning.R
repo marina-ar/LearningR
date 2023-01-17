@@ -101,3 +101,37 @@ nhanes_small %>%
 nhanes_small %>%
   select(starts_with("bp_")) %>%
   rename(bp_systolic = bp_sys_ave)
+
+# filtering rows ----------------------------------------------------------
+
+nhanes_small %>%
+  filter(phys_active != "No")
+
+#  instead of & using comma means the same by default
+nhanes_small %>%
+  filter(bmi >= 25 &
+    phys_active == "No")
+
+# | means or. Technically this logic can give you anything from the table just because it offers the option bmi is 25 or phys active is no.
+nhanes_small %>%
+  filter(bmi == 25 |
+    phys_active == "No")
+
+# arranging rows ----------------------------------------------------------
+
+
+nhanes_small %>%
+  arrange(desc(age), bmi, education)
+
+# mutating columns --------------------------------------------------------
+
+nhanes_update <- nhanes_small %>%
+  mutate(
+    age_month = age * 12,
+    logged_bmi = log(bmi),
+    age_week = age_month * 4,
+    old = if_else(age >= 30,
+      "old",
+      "young"
+    )
+  )
