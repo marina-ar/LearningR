@@ -1,3 +1,4 @@
+# Here's an example of conflict.
 10
 
 # R basics ----------------------------------------------------------------
@@ -18,3 +19,4 @@ summary(airquality)
 library(tidyverse)
 
 #This will be used for testing out Git
+
