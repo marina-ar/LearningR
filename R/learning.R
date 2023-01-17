@@ -157,6 +157,7 @@ nhanes_modified
 
 # summarizing -------------------------------------------------------------
 # na.rm = T is dealing with missingness of data
+# I always want to ungroup when the processing is done.
 nhanes_small %>%
   filter(!is.na(diabetes)) %>%
   group_by(
@@ -168,4 +169,10 @@ nhanes_small %>%
       na.rm = T
     ),
     min_bmi = min(bmi, na.rm = T)
-  )
+  ) %>%
+    ungroup()
+
+write_csv(
+    nhanes_small,
+    here::here("data/nhanes_small.csv")
+)
