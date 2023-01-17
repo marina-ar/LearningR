@@ -153,3 +153,19 @@ nhanes_modified <- nhanes_small %>% # Specifying dataset
   )
 
 nhanes_modified
+
+
+# summarizing -------------------------------------------------------------
+# na.rm = T is dealing with missingness of data
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(
+    diabetes,
+    phys_active
+  ) %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = T
+    ),
+    min_bmi = min(bmi, na.rm = T)
+  )
